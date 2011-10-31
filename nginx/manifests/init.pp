@@ -16,7 +16,7 @@ class nginx {
         group => root,
         mode => 644,
         require => Service['nginx'],
-        content => template("nginx_default.erb"),
+        content => template("nginx/nginx_default.erb"),
         notify => Service['nginx']
     }
     file { "/etc/nginx/sites-available/default":
@@ -25,6 +25,6 @@ class nginx {
         group => root,
         mode => 644,
         require => File['/etc/nginx/sites-available/default'],
-        content => template("nginx_default_index.erb"),
+        content => template("nginx/nginx_default_index.erb"),
     }
 }
