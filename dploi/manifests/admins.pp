@@ -21,7 +21,7 @@ define unixaccount($username, $uid, $gid, $enabled="true") {
 	}
 }
 
-define developer_ssh_key($username, $key, $device, $enabled)
+define developer_ssh_key($developer, $key, $device, $enabled)
 {
     ssh_authorized_key {
 		"$device@$username":
