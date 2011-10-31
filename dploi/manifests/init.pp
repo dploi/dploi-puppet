@@ -1,4 +1,4 @@
-import dploi::projects
+import "dploi/projects"
 
 class dploi {
     
