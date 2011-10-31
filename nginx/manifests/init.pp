@@ -10,4 +10,21 @@ class nginx {
 		hasstatus => true,
 		require => Package['nginx'],
 	}
+	file { "/etc/nginx/sites-available/default":
+        path => "/etc/nginx/sites-available/default",
+        owner => root,
+        group => root,
+        mode => 644,
+        require => Service['nginx'],
+        content => template("nginx_default.erb"),
+        notify => Service['nginx']
+    }
+    file { "/etc/nginx/sites-available/default":
+        path => "/usr/share/nginx/www/index.html",
+        owner => root,
+        group => root,
+        mode => 644,
+        require => File['/etc/nginx/sites-available/default'],
+        content => template("nginx_default_index.erb"),
+    }
 }
