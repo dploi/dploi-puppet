@@ -1,3 +1,6 @@
 [submodule "concat"]
 	path = concat
 	url = https://github.com/KristianOellegaard/puppet-concat.git
+[submodule "sshauthkeys"]
+	path = sshauthkeys
+	url = git://github.com/KristianOellegaard/puppet-sshauthkeys.git
