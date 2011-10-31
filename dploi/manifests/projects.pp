@@ -59,11 +59,11 @@ class dploi::projects {
 	}
 }
 
-define basecustomer($uid, $gid) {
-    $username = $name
+define dploi::basecustomer($uid, $gid) {
+	$username = $name
 	unixaccount { $username: username => $username, uid => $uid, gid => $gid }
 	
-	projects::configuration{
+	dploi::projects::configuration{
 		$username:
 	}
 	
