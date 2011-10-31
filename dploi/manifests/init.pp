@@ -1,4 +1,5 @@
 import "dploi/projects"
+import "dploi/admins"
 
 class dploi {
     
