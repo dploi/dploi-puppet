@@ -19,7 +19,7 @@ class nginx {
         content => template("nginx/nginx_default.erb"),
         notify => Service['nginx']
     }
-    file { "/etc/nginx/sites-available/default":
+    file { "/usr/share/nginx/www/index.html":
         path => "/usr/share/nginx/www/index.html",
         owner => root,
         group => root,
