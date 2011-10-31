@@ -62,8 +62,7 @@ class dploi::projects {
 define dploi::basecustomer($uid, $gid) {
 	$username = $name
 	unixaccount { $username: username => $username, uid => $uid, gid => $gid }
-	
-    #Developer_ssh_key <|  |>
+	sshauthkeys{ $username: keys => $team }
 	
 	dploi::projects::configuration{
 		$username:
