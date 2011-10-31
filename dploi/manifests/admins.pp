@@ -39,5 +39,5 @@ define developer($username, $uid, $gid, $status, $enabled="true") {
     unixaccount{ $name:
         username => $username, uid => $uid, gid => $gid
     }
-    Developer_ssh_key <| username==$username |>
+    Developer_ssh_key <| developer==$username |>
 }

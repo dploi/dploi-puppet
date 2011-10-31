@@ -63,7 +63,7 @@ define dploi::basecustomer($uid, $gid) {
 	$username = $name
 	unixaccount { $username: username => $username, uid => $uid, gid => $gid }
 	
-    Developer_ssh_key <|  |>
+    #Developer_ssh_key <|  |>
 	
 	dploi::projects::configuration{
 		$username:
