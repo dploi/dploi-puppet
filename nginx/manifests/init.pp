@@ -15,7 +15,7 @@ class nginx {
         owner => root,
         group => root,
         mode => 644,
-        require => Service['nginx'],
+        require => Package['nginx'],
         content => template("nginx/nginx_default.erb"),
         notify => Service['nginx']
     }
