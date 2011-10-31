@@ -1,7 +1,10 @@
 import dploi::projects
 
+class dploi {
+    
+}
+
 define dploi::customer($project, $state, $uid, $gid=502, $enabled="true", $loadbalance="false") {
-	require groups::customers
     basecustomer{
         "$project-$state":
             uid => $uid,
