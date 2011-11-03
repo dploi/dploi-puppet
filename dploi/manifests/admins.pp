@@ -25,5 +25,5 @@ define developer($username, $uid, $gid, $status, $keys=[], $enabled="true") {
     unixaccount{ $name:
         username => $username, uid => $uid, gid => $gid
     }
-    sshauthkeys{ $username: keys => $team }
+    sshauthkeys{ $username: keys => $keys }
 }
