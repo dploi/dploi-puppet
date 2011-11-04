@@ -16,7 +16,7 @@ define dploi::customer($project, $state, $uid, $gid=502, $enabled="true", $loadb
     
     sudo::sudo_user{
         $project:
-            user => "$tmpusername":
+            user => "$tmpusername",
             privileges => [
                 "ALL=(root) NOPASSWD:/usr/bin/supervisorctl restart $tmpusername,/usr/bin/supervisorctl add $tmpusername,/usr/bin/supervisorctl update $tmpusername,/usr/bin/supervisorctl start $tmpusername,/usr/bin/supervisorctl stop $tmpusername,/usr/bin/supervisorctl status $tmpusername,/etc/init.d/nginx reload $tmpusername"
             ]
