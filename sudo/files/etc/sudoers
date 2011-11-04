@@ -12,11 +12,8 @@ Defaults        env_reset
 # User alias specification
 
 # Cmnd alias specification
-Cmnd_Alias PROJECT_CMND = /usr/bin/supervisorctl restart*,/usr/bin/supervisorctl add*,/usr/bin/supervisorctl update*,/usr/bin/supervisorctl start*,/usr/bin/supervisorctl stop*,/usr/bin/supervisorctl status*,/etc/init.d/nginx reload*
 
 # User privilege specification
 root    ALL=(ALL) ALL
-
-%sudo ALL=(ALL) ALL
 
 #includedir /etc/sudoers.d
