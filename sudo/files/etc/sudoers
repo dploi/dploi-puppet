@@ -17,15 +17,6 @@ Cmnd_Alias PROJECT_CMND = /usr/bin/supervisorctl restart*,/usr/bin/supervisorctl
 # User privilege specification
 root    ALL=(ALL) ALL
 
-# Allow members of group sudo to execute any command after they have
-# provided their password
-# (Note that later entries override this, so you might need to move
-# it further down)
 %sudo ALL=(ALL) ALL
-#
-#includedir /etc/sudoers.d
 
-# Members of the admin group may gain root privileges
-%developers ALL = NOPASSWD: ALL
-
-%customers ALL=(root) NOPASSWD:PROJECT_CMND
+includedir /etc/sudoers.d
