@@ -5,7 +5,7 @@ class sudo {
 	
 	define sudo_user( $user, $privileges ) {
 
-		file { "/etc/sudoers.d/$user":
+		file { "/etc/sudoers.d/$name":
 			owner => root,
 			group => root,
 			mode => 0440,
