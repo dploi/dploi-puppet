@@ -1,4 +1,5 @@
 class sshd {
+    motd::register{"Passwordless SSH login": }
     file { "/etc/ssh/sshd_config":
         ensure => present,
         owner => 'root',
