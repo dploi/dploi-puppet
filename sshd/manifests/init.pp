@@ -6,6 +6,7 @@ class sshd {
         group => 'root',
         mode => 0440,
         source => "puppet:///modules/sshd/sshd_config",
+        notify => Service['ssh']
     }
     package {'openssh-server':
 		ensure => latest,
