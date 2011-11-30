@@ -17,6 +17,11 @@ class dploi::projects {
 			ensure => directory,
 			owner => $username,
 		}
+		file { "/home/$username/log/nginx":
+			ensure => directory,
+			owner => $username,
+			require => File["/home/$username/log"];
+		}
 		file { "/home/$username/static":
 			ensure => directory,
 			owner => $username,
