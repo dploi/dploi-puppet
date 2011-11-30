@@ -13,6 +13,10 @@ class dploi::projects {
 			ensure => directory,
 			owner => $username,
 		}
+		file { "/home/$username/log":
+			ensure => directory,
+			owner => $username,
+		}
 		file { "/home/$username/static":
 			ensure => directory,
 			owner => $username,
