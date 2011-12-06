@@ -27,6 +27,8 @@ class pythonutils {
 		
 		'python-virtualenv':
 		    ensure => latest;
-			
+		    
+	    'python-lxml':
+		    ensure => latest;
 	}
 }
