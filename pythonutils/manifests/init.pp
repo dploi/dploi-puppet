@@ -30,5 +30,8 @@ class pythonutils {
 		    
 	    'python-lxml':
 		    ensure => latest;
+		    
+	    'python-numpy':
+		    ensure => latest;
 	}
 }
