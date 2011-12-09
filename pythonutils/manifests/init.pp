@@ -33,5 +33,14 @@ class pythonutils {
 		    
 	    'python-numpy':
 		    ensure => latest;
+	    
+	    'libxslt':
+		    ensure => latest;
+		    
+	    'libxslt-dev':
+		    ensure => latest;
+	    
+	    'libxml2-dev':
+		    ensure => latest;
 	}
 }
