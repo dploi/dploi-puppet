@@ -42,5 +42,8 @@ class pythonutils {
 	    
 	    'libxml2-dev':
 		    ensure => latest;
+
+		'imagemagick':
+		    ensure => latest;
 	}
 }
