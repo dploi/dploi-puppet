@@ -10,6 +10,15 @@ class nginx {
 		hasstatus => true,
 		require => Package['nginx'],
 	}
+	file { "/etc/nginx/nginx.conf":
+        path => "/etc/nginx/nginx.conf",
+        owner => root,
+        group => root,
+        mode => 644,
+        require => Package['nginx'],
+        content => template("nginx/nginx.conf.erb"),
+        notify => Service['nginx']
+    }
 	file { "/etc/nginx/sites-available/default":
         path => "/etc/nginx/sites-available/default",
         owner => root,
