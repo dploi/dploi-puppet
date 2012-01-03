@@ -30,6 +30,12 @@ class dploi::projects {
 			ensure => directory,
 			owner => $username,
 		}
+
+		file { "/home/$username/upload/media":
+			ensure => directory,
+ 			owner => $username,
+			require => File["/home/$username/upload"];
+		}
 		
 		file { "/home/$username/tmp":
 			ensure => directory,
