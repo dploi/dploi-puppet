@@ -27,3 +27,9 @@ server {
 		try_files $uri $uri/ /index.html;
 	}
 }
+
+server {
+	listen	443 default;
+	#listen   [::]:443 default ipv6only=on; ## listen for ipv6
+	rewrite ^(.*) http://$host$1 permanent;
+}
