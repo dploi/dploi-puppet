@@ -46,16 +46,16 @@ class nagios::server {
 class nagios::client {
 	motd::register{"Nagios monitored client (SSH+Ping)": }
 	# Nagios configuration
-	@@nagios_host { "${::fqdn}":
+	@@nagios_host { "${::ipaddress}":
 		ensure => present,
-		alias => "${::hostname}",
+		alias => "${::fqdn}",
 		address => "${::ipaddress}",
 		max_check_attempts =>  5,
 		use => "generic-host",
 		contact_groups => "serveradmins",
 		target => "/etc/nagios3/conf.d/puppet.cfg";
 	}
-	@@nagios_service { "${::hostname}_check_ping":
+	@@nagios_service { "${::ipaddress}_check_ping":
 		ensure => present,
 		host_name => "${::fqdn}",
 		notification_interval => 60,
@@ -67,7 +67,7 @@ class nagios::client {
 		use => "generic-service",
 		target => "/etc/nagios3/conf.d/puppet.cfg";
 	}
-	@@nagios_service { "${::hostname}_check_ssh":
+	@@nagios_service { "${::ipaddress}_check_ssh":
 		ensure => present,
 		host_name => "${::fqdn}",
 		notification_interval => 60,
