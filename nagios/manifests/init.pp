@@ -57,7 +57,7 @@ class nagios::client {
 	}
 	@@nagios_service { "${::ipaddress}_check_ping":
 		ensure => present,
-		host_name => "${::fqdn}",
+		host_name => "${::ipaddress}",
 		notification_interval => 60,
 		flap_detection_enabled => 1,
 		service_description => "Ping",
@@ -69,7 +69,7 @@ class nagios::client {
 	}
 	@@nagios_service { "${::ipaddress}_check_ssh":
 		ensure => present,
-		host_name => "${::fqdn}",
+		host_name => "${::ipaddress}",
 		notification_interval => 60,
 		check_interval => "1",
 		flap_detection_enabled => 1,
