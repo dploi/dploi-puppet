@@ -1,3 +1,4 @@
+import "program"
 class supervisor {
     motd::register{"Supervisor": }
 	package {'supervisor':

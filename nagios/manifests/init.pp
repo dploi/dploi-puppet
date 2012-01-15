@@ -1,3 +1,5 @@
+import "frontend"
+
 class nagios
 {
 
