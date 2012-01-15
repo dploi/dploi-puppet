@@ -1,6 +1,9 @@
 import "program"
 class supervisor {
-    motd::register{"Supervisor": }
+	require pythonutils
+    motd::register{"Supervisor":
+		require => Package["supervisor"],
+	}
 	package {'supervisor':
 		ensure => latest,
 		require => Exec["supervisor-meld3-fix"];
