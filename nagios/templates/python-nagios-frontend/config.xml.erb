@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<balbec config_version="1">
+	<nagios>
+        <!-- define either ndo2db *or* nagios files *or* livestatus as data source -->
+	    <!--<ndo2db>
+		    <database>nagios</database>
+		    <hostname>mysql.bes-intern.com</hostname>
+		    <username>nagios</username>
+	    </ndo2db>-->
+	    <!--<livestatus>
+            <socket_path>/opt/nagios/var/rw/livestatus/live</socket_path>
+        </livestatus>-->
+        <files>
+            <object_file>/var/cache/nagios3/objects.cache</object_file>
+            <status_file>/var/cache/nagios3/status.dat</status_file>
+        </files>
+		<url_prefix>http://nagios/nagios/cgi-bin/status.cgi?host=</url_prefix>
+	</nagios>
+	<map name="default">
+		<hostgroup>all</hostgroup>
+	</map>
+
+</balbec>
