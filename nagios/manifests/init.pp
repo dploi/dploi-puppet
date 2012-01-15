@@ -46,7 +46,7 @@ class nagios::server {
 class nagios::client {
 	motd::register{"Nagios monitored client (SSH+Ping)": }
 	# Nagios configuration
-	@@nagios_host { "${::ipaddress}":
+	@@nagios_host { "${::fqdn}":
 		ensure => present,
 		alias => "${::fqdn}",
 		address => "${::ipaddress}",
@@ -55,9 +55,9 @@ class nagios::client {
 		contact_groups => "serveradmins",
 		target => "/etc/nagios3/conf.d/puppet.cfg";
 	}
-	@@nagios_service { "${::ipaddress}_check_ping":
+	@@nagios_service { "${::fqdn}_check_ping":
 		ensure => present,
-		host_name => "${::ipaddress}",
+		host_name => "${::fqdn}",
 		notification_interval => 60,
 		flap_detection_enabled => 1,
 		service_description => "Ping",
@@ -67,9 +67,9 @@ class nagios::client {
 		use => "generic-service",
 		target => "/etc/nagios3/conf.d/puppet.cfg";
 	}
-	@@nagios_service { "${::ipaddress}_check_ssh":
+	@@nagios_service { "${::fqdn}_check_ssh":
 		ensure => present,
-		host_name => "${::ipaddress}",
+		host_name => "${::fqdn}",
 		notification_interval => 60,
 		check_interval => "1",
 		flap_detection_enabled => 1,
