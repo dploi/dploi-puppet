@@ -4,6 +4,6 @@ define supervisor::program($command, $directory, $user, $autostart="True", $auto
 		content => template("supervisor/program.erb"),
 	}
 	exec {"/usr/bin/supervisorctl update $name":
-		
+		require => [File["/etc/supervisor/conf.d/$name.conf"], Package["supervisor"]],
 	}
 }
