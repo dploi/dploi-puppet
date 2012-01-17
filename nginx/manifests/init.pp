@@ -36,4 +36,16 @@ class nginx {
         require => File['/etc/nginx/sites-available/default'],
         content => template("nginx/nginx_default_index.erb"),
     }
+    @@nagios_service { "${::fqdn}_check_http_80":
+		ensure => present,
+		host_name => "${::fqdn}",
+		notification_interval => 60,
+		flap_detection_enabled => 1,
+		service_description => "HTTP/nginx",
+		check_command => "check_http!80",
+		check_interval => "1",
+		contact_groups => "serveradmins",
+		use => "generic-service",
+		target => "/etc/nagios3/conf.d/puppet.cfg";
+	}
 }
