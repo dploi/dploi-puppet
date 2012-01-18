@@ -43,6 +43,7 @@ class nagios::server {
 	# Collect everything else, which will be staying at the default level5…
 	Nagios_host <<||>>
 	Nagios_service <<||>>
+	Nagios_hostgroup <<||>>
 }
 
 class nagios::client {
