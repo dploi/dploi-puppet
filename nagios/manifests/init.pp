@@ -44,6 +44,7 @@ class nagios::server {
 	Nagios_host <<||>>
 	Nagios_service <<||>>
 	Nagios_hostgroup <<||>>
+	Nagios_command <<||>>
 }
 
 class nagios::client {
