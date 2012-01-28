@@ -24,7 +24,7 @@ define postgres::database($ensure, $owner = false) {
                 command => "/usr/bin/createdb $ownerstring '$name'",
                 user => "postgres",
                 unless => "/usr/bin/psql -l | grep '$name  *|'",
-				require => Package["postgres"],
+				require => Package["postgresql"],
             }
         }
         absent:  {
@@ -32,7 +32,7 @@ define postgres::database($ensure, $owner = false) {
                 command => "/usr/bin/dropdb '$name'",
                 onlyif => "/usr/bin/psql -l | grep '$name  *|'",
                 user => "postgres",
-				require => Package["postgres"],
+				require => Package["postgresql"],
             }
         }
         default: {

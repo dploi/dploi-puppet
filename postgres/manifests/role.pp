@@ -24,7 +24,7 @@ define postgres::role($ensure, $password = false) {
                 command => "/usr/bin/psql -c 'CREATE USER \"$name\" $passtext'",
                 user => "postgres",
                 unless => "/usr/bin/psql -c '\\du' | grep '^  *$name  *|'",
-				require => Package["postgres"],
+				require => Package["postgresql"],
             }
         }
         absent:  {
@@ -32,7 +32,7 @@ define postgres::role($ensure, $password = false) {
                 command => "/usr/bin/dropuser \"$name\"",
                 user => "postgres",
                 onlyif => "/usr/bin/psql -c '\\du' | grep '$name  *|'",
-				require => Package["postgres"],
+				require => Package["postgresql"],
             }
         }
         default: {
