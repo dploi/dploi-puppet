@@ -3,7 +3,9 @@ class munin {
 }
 
 class munin::client {
-	motd::register{"Munin client": }
+	motd::register{"Munin client":
+		require => Package["munin-node"]
+	}
 	package {
 		"munin-node":
 			ensure => latest;
@@ -16,6 +18,7 @@ class munin::client {
 			enable => true,
 			hasrestart => true,
 			hasstatus => true,
+			require => Package["munin-node"],
 	}
     @@munin::register{"${::fqdn}": }
 	File <<| tag == "munin-node.conf" |>>

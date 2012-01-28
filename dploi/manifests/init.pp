@@ -22,3 +22,22 @@ define dploi::customer($project, $state, $uid, $gid=502, $enabled="true", $loadb
             ]
     }
 }
+
+class dploi::enc-customer($projects) {
+	# A wrapper around dploi::customer, to make it useable from ENC
+	define project() {
+		$p = split($title, '[:]')
+		$project = $p[0]
+		$state = $p[1]
+		$uid = $p[2]
+		$projectname = sprintf('%s-%s', $project, $state)
+		dploi::customer{$projectname:
+			project => $project,
+			state => $state,
+			uid => $uid,
+		}
+	}
+	$project = inline_template("<% projects.each do |key,val| -%><%= key %>:<%= val['state'] %>:<%= val['uid'] %>;<% end -%>")
+	$projectarray = split($project, '[ ;]')
+	project{$projectarray:}
+}
