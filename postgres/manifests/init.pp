@@ -10,4 +10,13 @@ class postgres {
 		hasstatus => true,
 		require => Package['postgresql'],
 	}
+	file {'/usr/sbin/psqldumpdbs.sh':
+		source => "puppet://server/modules/postgres/psqldumpdbs.sh",
+	}
+	cron {'psqldumpdbs':
+		command => "/usr/sbin/psqldumpdbs.sh",
+		user => postgres,
+		hour => "0",
+		require => File["/usr/sbin/psqldumpdbs.sh"];
+	}
 }
