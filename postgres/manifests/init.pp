@@ -12,6 +12,7 @@ class postgres {
 	}
 	file {'/usr/sbin/psqldumpdbs.sh':
 		source => "puppet:///modules/postgres/psqldumpdbs.sh",
+		mode => 755,
 	}
 	file {'/backups':
 		ensure => "directory",
