@@ -13,6 +13,11 @@ class postgres {
 	file {'/usr/sbin/psqldumpdbs.sh':
 		source => "puppet:///modules/postgres/psqldumpdbs.sh",
 	}
+	file {'/backups/psql':
+		ensure => "directory",
+		mode => 0600,
+		owner => "postgres",
+	}
 	cron {'psqldumpdbs':
 		command => "/usr/sbin/psqldumpdbs.sh",
 		user => postgres,
