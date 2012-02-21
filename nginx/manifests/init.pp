@@ -19,6 +19,13 @@ class nginx {
         content => template("nginx/nginx.conf.erb"),
         notify => Service['nginx']
     }
+    file {
+    	"/usr/share/nginx/www/":
+    		require => File['/usr/share/nginx/'],
+    		ensure => "directory";
+    	"/usr/share/nginx/":
+    		ensure => "directory",;
+    }
 	file { "/etc/nginx/sites-available/default":
         path => "/etc/nginx/sites-available/default",
         owner => root,
@@ -33,7 +40,7 @@ class nginx {
         owner => root,
         group => root,
         mode => 644,
-        require => File['/etc/nginx/sites-available/default'],
+        require => [File['/etc/nginx/sites-available/default'], File['/usr/share/nginx/www/']],
         content => template("nginx/nginx_default_index.erb"),
     }
     @@nagios_service { "${::fqdn}_check_http_80":
