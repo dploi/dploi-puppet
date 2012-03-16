@@ -12,19 +12,25 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-define postgres::database($ensure, $owner = false) {
+define postgres::database($ensure, $owner = false, $template=false) {
     $ownerstring = $owner ? {
         false => "",
         default => "-O '$owner'"
     }
+	
+    $templatestring = $template ? {
+        false => "",
+        default => "-T '$template'"
+    }
+	
 
     case $ensure {
         present: {
             exec { "Create $name postgres db":
-                command => "/usr/bin/createdb $ownerstring '$name'",
+                command => "/usr/bin/createdb $ownerstring $templatestring '$name'",
                 user => "postgres",
                 unless => "/usr/bin/psql -l | grep '$name  *|'",
-				require => Package["postgresql"],
+				require => [Package["postgresql"], Service['postgresql']],
             }
         }
         absent:  {
@@ -32,7 +38,7 @@ define postgres::database($ensure, $owner = false) {
                 command => "/usr/bin/dropdb '$name'",
                 onlyif => "/usr/bin/psql -l | grep '$name  *|'",
                 user => "postgres",
-				require => Package["postgresql"],
+				require => [Package["postgresql"], Service['postgresql']],
             }
         }
         default: {
