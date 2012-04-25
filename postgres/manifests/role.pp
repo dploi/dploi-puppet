@@ -31,14 +31,14 @@ define postgres::role($ensure, $password = false, $superuser = false) {
                     command => "/usr/bin/psql -c \"ALTER USER \"$name\" SUPERUSER;\" ",
                     user => "postgres",
                     unless => "/usr/bin/psql -c \"SELECT rolname FROM pg_catalog.pg_roles WHERE rolsuper;\" | grep \"^ $name\$\" ",
-                    require => Package["postgresql"],
+                    require => Exec["Create $name postgres role"],
                 }
             } else {
                 exec { "Downgrade $name postgres role to normal user":
                     command => "/usr/bin/psql -c \"ALTER USER \"$name\" NOSUPERUSER;\" ",
                     user => "postgres",
-                    unless => "/usr/bin/psql -c \"SELECT rolname FROM pg_catalog.pg_roles WHERE NOT rolsuper;\" | grep \"^ $name\$\" ",
-                    require => Package["postgresql"],
+                    unless => "/usr/bin/psql -c 'SELECT rolname FROM pg_catalog.pg_roles WHERE NOT rolsuper;' | grep \"^ $name\$\" ",
+                    require => Exec["Create $name postgres role"],
                 }
             }
         }
