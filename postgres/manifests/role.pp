@@ -12,7 +12,7 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-define postgres::role($ensure, $password = false) {
+define postgres::role($ensure, $password = false, $superuser = false) {
     $passtext = $password ? {
         false => "",
         default => "PASSWORD '$password'"
@@ -24,7 +24,22 @@ define postgres::role($ensure, $password = false) {
                 command => "/usr/bin/psql -c \"CREATE USER \"$name\" $passtext \" ",
                 user => "postgres",
                 unless => "/usr/bin/psql -c '\\du' | grep '^  *$name  *|'",
-				require => Package["postgresql"],
+                require => Package["postgresql"],
+            }
+            if $superuser {
+                exec { "Upgrade $name postgres role to superuser":
+                    command => "/usr/bin/psql -c \"ALTER USER \"$name\" SUPERUSER;\" ",
+                    user => "postgres",
+                    unless => "/usr/bin/psql -c \"SELECT rolname FROM pg_catalog.pg_roles WHERE rolsuper;\" | grep \"^ $name\$\" ",
+                    require => Package["postgresql"],
+                }
+            } else {
+                exec { "Downgrade $name postgres role to normal user":
+                    command => "/usr/bin/psql -c \"ALTER USER \"$name\" NOSUPERUSER;\" ",
+                    user => "postgres",
+                    unless => "/usr/bin/psql -c \"SELECT rolname FROM pg_catalog.pg_roles WHERE NOT rolsuper;\" | grep \"^ $name\$\" ",
+                    require => Package["postgresql"],
+                }
             }
         }
         absent:  {
@@ -32,7 +47,7 @@ define postgres::role($ensure, $password = false) {
                 command => "/usr/bin/dropuser \"$name\"",
                 user => "postgres",
                 onlyif => "/usr/bin/psql -c '\\du' | grep '$name  *|'",
-				require => Package["postgresql"],
+                require => Package["postgresql"],
             }
         }
         default: {
