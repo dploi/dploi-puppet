@@ -10,3 +10,6 @@
 [submodule "icinga"]
 	path = icinga
 	url = git@github.com:dploi/puppet-icinga.git
+[submodule "stdlib"]
+	path = stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
