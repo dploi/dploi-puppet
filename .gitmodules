@@ -7,3 +7,6 @@
 [submodule "mcollective"]
 	path = mcollective
 	url = git://github.com/dploi/puppet-module-mcollective.git
+[submodule "icinga"]
+	path = icinga
+	url = git@github.com:dploi/puppet-icinga.git
