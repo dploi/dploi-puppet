@@ -16,3 +16,6 @@
 [submodule "hiera"]
 	path = hiera
 	url = https://github.com/puppetlabs/hiera-puppet.git
+[submodule "puppetagent"]
+	path = puppetagent
+	url = git://github.com/KristianOellegaard/puppet-puppetagent.git
