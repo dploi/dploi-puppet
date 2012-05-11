@@ -13,3 +13,6 @@
 [submodule "stdlib"]
 	path = stdlib
 	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "hiera"]
+	path = hiera
+	url = https://github.com/puppetlabs/hiera-puppet.git
