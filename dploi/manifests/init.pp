@@ -6,7 +6,7 @@ class dploi {
 }
 
 define dploi::customer($project, $state, $uid, $gid=502, $enabled="true", $loadbalance="false") {
-    $tmpusername = "$project-$state"
+    $tmpusername = "$project\-$state"
     basecustomer{
         $tmpusername:
             uid => $uid,
