@@ -77,7 +77,7 @@ class dploi::projects {
 define dploi::basecustomer($uid, $gid) {
 	$username = $name
 	unixaccount { $username: username => $username, uid => $uid, gid => $gid }
-	sshauthkeys{ $username: keys => $team }
+	sshauthkeys{ $username: keys => hiera_array('team') }
 	
 	dploi::projects::configuration{
 		$username:
