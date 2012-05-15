@@ -19,3 +19,6 @@
 [submodule "puppetagent"]
 	path = puppetagent
 	url = git://github.com/KristianOellegaard/puppet-puppetagent.git
+[submodule "trocla"]
+	path = trocla
+	url = git://github.com/dploi/puppet-trocla.git
