@@ -17,7 +17,9 @@
 		<url_prefix>http://nagios/nagios/cgi-bin/status.cgi?host=</url_prefix>
 	</nagios>
 	<map name="default">
-		<hostgroup>all</hostgroup>
+		<% hostgroups.each do |hostgroup| -%>
+			<hostgroup><%= hostgroup %></hostgroup>
+		<% end -%>
 	</map>
 
 </balbec>

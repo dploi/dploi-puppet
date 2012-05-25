@@ -1,6 +1,7 @@
 class nagios::python-nagios-frontend (
 		$object_file = '/var/cache/nagios3/objects.cache',
-		$status_file = '/var/cache/nagios3/status.dat'
+		$status_file = '/var/cache/nagios3/status.dat',
+		$hostgroups = ['all']
 	) {
 	# Alternative frontend for nagios
 	require supervisor
