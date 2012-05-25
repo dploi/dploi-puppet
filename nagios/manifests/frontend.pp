@@ -1,4 +1,7 @@
-class nagios::python-nagios-frontend {
+class nagios::python-nagios-frontend (
+		$object_file = '/var/cache/nagios3/objects.cache',
+		$status_file = '/var/cache/nagios3/status.dat'
+	) {
 	# Alternative frontend for nagios
 	require supervisor
 	package {"python-nagios-frontend":
