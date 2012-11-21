@@ -60,6 +60,7 @@ class munin::server {
 			content => template("munin/munin-node.conf.erb"),
 			tag => "munin-node.conf",
 			require => Package["munin-node"],
+			notify => Service["munin-node"],
 	}
 }
 define munin::register($content="", $order=10) {
