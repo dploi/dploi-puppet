@@ -22,3 +22,6 @@
 [submodule "trocla"]
 	path = trocla
 	url = git://github.com/dploi/puppet-trocla.git
+[submodule "datadog"]
+	path = datadog
+	url = git://github.com/DataDog/puppet-datadog-agent.git
