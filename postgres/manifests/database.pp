@@ -19,7 +19,7 @@ define postgres::database($ensure, $owner = false, $template=false) {
     }
 	
     $templatestring = $template ? {
-        false => "",
+        false => "-T template0",
         default => "-T '$template'"
     }
 	
@@ -27,7 +27,7 @@ define postgres::database($ensure, $owner = false, $template=false) {
     case $ensure {
         present: {
             exec { "Create $name postgres db":
-                command => "/usr/bin/createdb $ownerstring $templatestring '$name'",
+                command => "/usr/bin/createdb -E UTF8 --lc-collate='en_US.UTF-8' --lc-ctype='en_US.UTF-8' $ownerstring $templatestring '$name'",
                 user => "postgres",
                 unless => "/usr/bin/psql -l | grep '$name  *|'",
 				require => [Package["postgresql"], Service['postgresql']],
