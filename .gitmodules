@@ -25,3 +25,6 @@
 [submodule "datadog"]
 	path = datadog
 	url = git://github.com/DataDog/puppet-datadog-agent.git
+[submodule "nginx_lb"]
+	path = nginx_lb
+	url = git://github.com/KristianOellegaard/puppet-nginx-lb.git
