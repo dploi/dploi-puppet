@@ -22,7 +22,7 @@ class postgres {
 		ensure => "directory",
 		mode => 0600,
 		owner => "postgres",
-		require => File["/backups"],
+		require => [ File["/backups"], Package['postgresql'] ],
 	}
 	cron {'psqldumpdbs':
 		command => "/usr/sbin/psqldumpdbs.sh",
